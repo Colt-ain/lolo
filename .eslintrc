@@ -1,0 +1,144 @@
+{
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"ecmaVersion": 2021,
+		"sourceType": "module",
+		"project": "./tsconfig.json",
+		"ecmaFeatures": {
+			"jsx": true
+		}
+	},
+	"settings": {
+		"import/resolver": {
+			"node": {
+				"extensions": [
+					".js",
+					".ts",
+					".json"
+				],
+				"moduleDirectory": [
+					"node_modules",
+					"src/"
+				]
+			}
+		}
+	},
+	"extends": [
+		"eslint:recommended",
+		"plugin:@typescript-eslint/recommended",
+		"plugin:@typescript-eslint/eslint-recommended"
+	],
+	"plugins": [
+		"@typescript-eslint/eslint-plugin"
+	],
+	"rules": {
+		"@typescript-eslint/interface-name-prefix": "off",
+		"@typescript-eslint/explicit-function-return-type": "off",
+		"@typescript-eslint/explicit-module-boundary-types": "off",
+		"@typescript-eslint/no-non-null-assertion": "off",
+		"eol-last": 1,
+		"semi": [
+			"warn",
+			"always"
+		],
+		"semi-spacing": [
+			"warn",
+			{
+				"before": false,
+				"after": true
+			}
+		],
+		"quotes": [
+			"warn",
+			"single",
+			{
+				"avoidEscape": true,
+				"allowTemplateLiterals": true
+			}
+		],
+		"no-unused-vars": "off",
+		"@typescript-eslint/no-unused-vars": [
+			"warn",
+			{
+				"vars": "all",
+				"args": "after-used",
+				"varsIgnorePattern": "^_",
+				"argsIgnorePattern": "^_",
+				"ignoreRestSiblings": true
+			}
+		],
+		"no-multiple-empty-lines": [
+			"warn",
+			{
+				"max": 1
+			}
+		],
+		"no-trailing-spaces": [
+			"warn"
+		],
+		"no-else-return": [
+			"warn"
+		],
+		"no-duplicate-imports": [
+			"error",
+			{
+				"includeExports": true
+			}
+		],
+		"keyword-spacing": [
+			"warn",
+			{
+				"before": true,
+				"after": true
+			}
+		],
+		"jsx-quotes": [
+			"warn",
+			"prefer-single"
+		],
+		"key-spacing": [
+			"warn",
+			{
+				"beforeColon": false,
+				"afterColon": true
+			}
+		],
+		"no-absolute-path": 0,
+		"no-throw-literal": 0,
+		"comma-spacing": [
+			"error",
+			{
+				"before": false,
+				"after": true
+			}
+		],
+		"object-curly-spacing": [
+			"warn",
+			"always"
+		],
+		"no-debugger": "warn",
+		"no-inline-comments": "warn",
+		"no-warning-comments": "off",
+		"max-len": [
+			"warn",
+			{
+				"code": 120,
+				"ignoreStrings": true
+			}
+		],
+		"no-console": "off",
+		"comma-dangle": [
+			"warn",
+			"always-multiline"
+		],
+		"prefer-promise-reject-errors": "off",
+		"camelcase": "off",
+		"@typescript-eslint/no-explicit-any": "off",
+		"@typescript-eslint/member-delimiter-style": "warn"
+	},
+	"ignorePatterns": [
+		"config/",
+		"node_modules/",
+		"scripts/"
+	]
+}
