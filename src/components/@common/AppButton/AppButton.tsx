@@ -11,12 +11,14 @@ type Props = {
 	title: string;
 	onPress?: () => void;
 	disabled?: boolean;
+	style?: any,
 };
 
 export default function AppButton({
 	onPress,
 	title,
 	disabled,
+	style,
 }: Props): JSX.Element {
 	const [isPressed, setIsPressed] = useState(false);
 
@@ -44,6 +46,7 @@ export default function AppButton({
 				paddingHorizontal: 46,
 				paddingVertical: 18,
 				borderRadius: 18,
+				...style,
 			}}
 		>
 			<Text

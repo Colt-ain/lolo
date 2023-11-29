@@ -10,6 +10,8 @@ import { SafeAreaView, Text, View } from "react-native";
 import BackButton from "~components/@common/BackBtn";
 import { NavigationType } from "../../interfaces";
 import { colors } from "~constants/colors";
+import ChooseLolo from '~components/Onboarding/ChooseLolo';
+import NotificationExamples from '~components/Onboarding/NotificationExamples';
 
 const { welcome, areasToImprove } = onboardingRouteNames;
 
@@ -59,6 +61,16 @@ const Onboarding = () => {
 				<Stack.Screen
 					name={onboardingRouteNames.areasToImprove}
 					component={AreasToImprove}
+					options={screenOptions('', true, true)}
+				/>
+				<Stack.Screen
+					name={onboardingRouteNames.chooseLolo}
+					component={ChooseLolo}
+					options={screenOptions('', true, true)}
+				/>
+				<Stack.Screen
+					name={onboardingRouteNames.notifivationExpamples}
+					component={NotificationExamples}
 					options={screenOptions('', true, true)}
 				/>
 

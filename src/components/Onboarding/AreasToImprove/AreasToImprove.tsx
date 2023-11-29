@@ -4,10 +4,9 @@ import Tips from "~components/@common/Tips/Tips";
 import { areasToImprove } from "../../../content/onboarding/areasToImprove";
 import AppButton from "~components/@common/AppButton";
 import { useNavigation } from "@react-navigation/native";
+import { onboardingRouteNames } from '~routes/onboarding/onboardingRouteNames';
 
-function AreasToImprove({}) {
-	const navigation = useNavigation();
-
+function AreasToImprove({ navigation }: { navigation: any }) {
 	const [areas, setAreas] = useState(areasToImprove.map((area) => ({
 		...area,
 		isActive: false,
@@ -30,6 +29,8 @@ function AreasToImprove({}) {
 
 	const onNextPress = () => {
 		console.log('Next');
+
+		navigation.navigate(onboardingRouteNames.chooseLolo);
 	};
 
 	const isChosen = areas.some((area) => area.isActive);
