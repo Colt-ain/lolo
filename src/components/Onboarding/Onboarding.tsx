@@ -12,6 +12,7 @@ import { NavigationType } from "../../interfaces";
 import { colors } from "~constants/colors";
 import ChooseLolo from '~components/Onboarding/ChooseLolo';
 import NotificationExamples from '~components/Onboarding/NotificationExamples';
+import YouWillStartWith from "~components/Onboarding/YouWillStartWith";
 
 const { welcome, areasToImprove } = onboardingRouteNames;
 
@@ -73,7 +74,11 @@ const Onboarding = () => {
 					component={NotificationExamples}
 					options={screenOptions('', true, true)}
 				/>
-
+				<Stack.Screen
+					name={onboardingRouteNames.youWillStartWith}
+					component={YouWillStartWith}
+					options={screenOptions('', true, true)}
+				/>
 			</Stack.Navigator>
 		</NavigationContainer>
 	);

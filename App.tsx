@@ -33,16 +33,19 @@ import { NavigationContainer } from "@react-navigation/native";
 function App(): ReactElement {
 	const isDarkMode = useColorScheme() === "dark";
 
-	const backgroundStyle = {
-		flex: 1,
-	};
-
 	return (
+		<View style={{
+			flex: 1,
+			backgroundColor: colors.background.white,
+		}}>
 			<Provider store={store}>
-				<SafeAreaView style={backgroundStyle}>
+				<SafeAreaView style={{
+					flex: 1,
+				}}>
 					<Auth/>
 				</SafeAreaView>
 			</Provider>
+		</View>
 	);
 }
 

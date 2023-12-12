@@ -5,6 +5,7 @@ import { colors } from '~constants/colors';
 import AppButton from '~components/@common/AppButton';
 import LinearGradient from 'react-native-linear-gradient'
 import { TimeoutId } from '@reduxjs/toolkit/dist/query/core/buildMiddleware/types';
+import { onboardingRouteNames } from "~routes/onboarding/onboardingRouteNames";
 
 const styles = StyleSheet.create({
 	linearGradient: {
@@ -53,6 +54,10 @@ function NotificationExamples({ navigation }: { navigation: any }) {
 		setIsStoppedAnimation(true);
 		clearInterval(intervalId.current);
 	};
+
+	const handleNext = () => {
+		navigation.navigate(onboardingRouteNames.youWillStartWith);
+	}
 
 	return (
 		<View
@@ -185,6 +190,7 @@ function NotificationExamples({ navigation }: { navigation: any }) {
 							paddingLeft: 46,
 							paddingRight: 46,
 						}}
+						onPress={handleNext}
 					/>
 				</LinearGradient>
 			</View>
