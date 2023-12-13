@@ -1,74 +1,273 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Animated, ImageBackground, Text, View } from "react-native";
+import { Animated, Dimensions, Easing, ImageBackground, Text, View } from "react-native";
 import { colors } from "~constants/colors";
 import AppButton from "~components/@common/AppButton";
 
-const texts = ['to believe in your strength', 'to love and accept  yourself', 'to take care of yourself'];
+const texts = [
+	{
+		color: colors.text.lightBlue,
+		text: 'to believe\n in your\n strength'
+	},
+	{
+		color: colors.text.lightPurple,
+		text: 'to love\n and accept\n yourself',
+	},
+	{
+		color: colors.text.grayBrown,
+		text: 'to take\n care of\n yourself',
+	},
+];
+
+const { width: viewportWidth, height } = Dimensions.get('window');
+
+const initialTimeout = 3000;
+const fadeTime = 300;
+const timeoutTime = 3000;
+const moveTimeBelow = 400;
+const moveTimeAbove = 500;
+
 
 function YouWillStartWith() {
-	const [isMovedImage, setIsMovedImage] = useState(false);
-	const [activeText, setActiveText] = useState<number>();
-	const [isAnimationFinished, setIsAnimationFinished] = useState(false);
+	const [isFadeAnimEnded, setIsFadeAnimEnded] = useState(false);
+	const [activeText, setActiveText] = useState<number>(0);
+
+	const activeTextRef = useRef<number>(0);
+
+	// const [isAnimationFinished, setIsAnimationFinished] = useState(false);
 	const [isLastTextShown, setIsLastTextShown] = useState(false);
 
 	const fadeAnim = useRef(new Animated.Value(0)).current;
+	const fadeAnimTranslate = useRef(new Animated.Value(10)).current;
 
-	const hideText = () => {
-		fadeOut();
+	const fadeAnimNext = useRef(new Animated.Value(0)).current;
+	const fadeAnimNextTranslate = useRef(new Animated.Value(10)).current;
+
+	const fadeAnimTitle = useRef(new Animated.Value(1)).current;
+	const translateAnimation = useRef(new Animated.Value(100)).current;
+	const fadeAnimBottomContent = useRef(new Animated.Value(0)).current;
+
+	useEffect(() => {
+		if (activeTextRef.current > texts.length - 1) {
+			setIsFadeAnimEnded(true);
+		}
+	}, [activeText]);
+
+	const fadeOut = () => {
+		if (isFadeAnimEnded) {
+			return;
+		}
+
+		console.log('fade out');
+
+		Animated.timing(fadeAnimTranslate, {
+			toValue: 10,
+			duration: fadeTime,
+			useNativeDriver: true,
+		}).start()
+
+		Animated.timing(fadeAnim, {
+			toValue: 0,
+			duration: fadeTime,
+			useNativeDriver: true,
+		}).start();
+
+		if (activeText === undefined || activeTextRef.current > texts.length - 1) {
+			return;
+		}
 
 		const timer = setTimeout(() => {
-			showText();
+			if (activeTextRef.current > texts.length - 1) {
+				clearTimeout(timer);
+
+				return;
+			}
+
+			activeTextRef.current = activeTextRef.current + 1;
+
+			fadeIn();
 
 			clearTimeout(timer);
-		}, 1000);
+		}, fadeTime);
 	};
 
-	const showText = () => {
-		fadeIn();
-		setActiveText(activeText === undefined ? 0 : activeText + 1);
+	const fadeIn = () => {
+		if (isFadeAnimEnded) {
+			return;
+		}
 
-		const stimer = setTimeout(() => {
-			hideText();
+		console.log('fade in');
 
-			clearTimeout(stimer);
-		}, 4000);
+		Animated.timing(fadeAnimTranslate, {
+			toValue: 0,
+			duration: fadeTime,
+			useNativeDriver: true,
+		}).start()
+
+		Animated.timing(fadeAnim, {
+			toValue: 1,
+			duration: fadeTime,
+			useNativeDriver: true,
+		}).start();
+
+		const timer = setTimeout(() => {
+			fadeOut();
+
+			clearTimeout(timer);
+		}, timeoutTime);
+
+		if (activeText !== undefined && activeText > texts.length - 1) {
+			clearTimeout(timer);
+		}
+	};
+
+	const fadeOutTitle = () => {
+		console.log('fade out title');
+
+		Animated.timing(fadeAnimTitle, {
+			toValue: 0,
+			duration: fadeTime,
+			useNativeDriver: true,
+		}).start();
+	};
+
+	const moveImageBelow = () => {
+		console.log('move below');
+
+		Animated.timing(translateAnimation, {
+			toValue: 330,
+			duration: moveTimeBelow,
+			useNativeDriver: true,
+			easing: Easing.bezier(0, 1, 1, 1),
+		}).start();
+	};
+
+	const moveImageAbove = () => {
+		console.log('move above');
+
+		Animated.timing(translateAnimation, {
+			toValue: 0,
+			duration: moveTimeAbove,
+			useNativeDriver: true,
+			easing: Easing.bezier(0, 1, 1, 1),
+		}).start();
+	}
+
+	const fadeInBottomContent = () => {
+		console.log('fade in bottom content');
+
+		Animated.timing(fadeAnimBottomContent, {
+			toValue: 1,
+			duration: 500,
+			useNativeDriver: true,
+		}).start();
 	};
 
 	useEffect(() => {
-		setTimeout(() => {
-			showText();
-		}, 1000);
+		const timeout = setTimeout(() => {
+			fadeIn();
+
+			clearTimeout(timeout);
+		}, initialTimeout);
+
+		return () => {
+			clearTimeout(timeout);
+		}
 	}, []);
 
 	const handleNext = () => {
 		console.log('next');
 	}
-	const fadeIn = () => {
-		Animated.timing(fadeAnim, {
-			toValue: 1,
-			duration: 1000,
-			useNativeDriver: true,
-		}).start();
-	};
 
-	const fadeOut = () => {
-		// Will change fadeAnim value to 0 in 3 seconds
-		Animated.timing(fadeAnim, {
-			toValue: 0,
-			duration: 1000,
-			useNativeDriver: true,
-		}).start();
-	};
+	useEffect(() => {
+		const timeout = setTimeout(() => {
+			setActiveText((prevActiveText) => {
+				if (prevActiveText > texts.length - 1) {
+					clearInterval(timeout);
+
+					return prevActiveText;
+				}
+
+				return prevActiveText + 1;
+			});
+		}, initialTimeout * 2 + fadeTime);
+
+		return () => {
+			clearInterval(timeout);
+		}
+	}, []);
+
+	useEffect(() => {
+		if (activeText === 0) return;
+
+		const interval = setInterval(() => {
+			setActiveText((prevActiveText) => {
+				if (prevActiveText > texts.length - 1) {
+					clearInterval(interval);
+
+					return prevActiveText;
+				}
+
+				return prevActiveText + 1;
+			});
+
+			return () => {
+				clearInterval(interval);
+			};
+		}, timeoutTime + fadeTime);
+	}, [activeText]);
+
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			moveImageBelow()
+		}, initialTimeout);
+
+		return () => clearTimeout(timer);
+	}, []);
+
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			moveImageAbove();
+		}, initialTimeout + timeoutTime * 3 + fadeTime * 3);
+
+		return () => clearTimeout(timer);
+	}, []);
+
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			fadeOutTitle();
+		}, initialTimeout + timeoutTime * 3 + fadeTime * 3);
+
+		return () => clearTimeout(timer);
+	}, []);
+
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			setIsLastTextShown(true);
+
+			fadeInBottomContent();
+		}, initialTimeout + timeoutTime * 3 + fadeTime * 3 + moveTimeAbove);
+
+		return () => clearTimeout(timer);
+	}, []);
+
+	console.log(fadeAnimTranslate);
 
 	return (
 		<View
 			style={{
+				flex: 1,
 				paddingHorizontal: 32,
-				justifyContent: 'space-between',
+				justifyContent: isLastTextShown ? 'space-between' : 'flex-start',
 				paddingBottom: '8%',
 			}}
 		>
-			{!isAnimationFinished && (
+			<Animated.View
+				style={[
+					{
+						opacity: fadeAnimTitle,
+					},
+				]}
+			>
 				<Text
 					style={{
 						fontSize: 22,
@@ -87,36 +286,52 @@ function YouWillStartWith() {
 					}}
 				>Lolo’s affirmations</Text>, you will start...
 				</Text>
-			)}
-			{activeText !== undefined && (
-				<Animated.View
-					style={[
-						{
-							// Bind opacity to animated value
-							opacity: fadeAnim,
-						},
-					]}
+			</Animated.View>
+			<Animated.View
+				style={[
+					{
+						opacity: fadeAnim,
+						transform: [
+							{
+								translateY: fadeAnimTranslate,
+							},
+						],
+					},
+				]}
+			>
+				<Text
+					style={{
+						fontSize: 51,
+						lineHeight: 58,
+						fontWeight: '600',
+						textAlign: 'center',
+						color: activeText !== undefined ? texts[activeText]?.color : colors.text.greenBlue,
+						marginTop: 40,
+					}}
 				>
-					<Text
-						style={{
-							fontSize: 51,
-							lineHeight: 58,
-							fontWeight: '600',
-							textAlign: 'center',
-							color: colors.purple,
-						}}
-					>
-						{texts[activeText]}
-					</Text>
-				</Animated.View>
-			)}
-			<Animated.View>
+					{activeText !== undefined && texts[activeText]?.text}
+				</Text>
+			</Animated.View>
+			<Animated.View
+				style={[
+					{
+						position: 'absolute',
+						transform: [
+							{
+								translateX: viewportWidth / 2 - 100,
+							},
+							{
+								translateY: translateAnimation,
+							},
+						],
+					},
+				]}
+			>
 				<View
 					style={{
 						height: 200,
 						width: 200,
 						alignSelf: 'center',
-						marginTop: isAnimationFinished ? 0 : 32,
 					}}
 				>
 					<ImageBackground
@@ -131,38 +346,49 @@ function YouWillStartWith() {
 					/>
 				</View>
 			</Animated.View>
-			{isLastTextShown && (
-				<>
+			<Animated.View
+				style={[
+					{
+						opacity: fadeAnimBottomContent,
+					},
+				]}
+			>
+				<Text
+					style={{
+						fontSize: 51,
+						lineHeight: 58,
+						fontWeight: '600',
+						textAlign: 'center',
+						color: colors.text.greenBlue,
+					}}
+				>
+					And see the bright side of things{'\n'}
 					<Text
 						style={{
-							fontSize: 51,
-							lineHeight: 58,
+							fontSize: 22,
 							fontWeight: '600',
+							lineHeight: 32,
 							textAlign: 'center',
-							color: colors.text.greenBlue,
 						}}
-					>
-						And see the bright side of things{'\n'}
-						<Text
-							style={{
-								fontSize: 22,
-								fontWeight: '600',
-								lineHeight: 32,
-								textAlign: 'center',
-							}}
-							>while staying realistic!</Text>
-					</Text>
-					<AppButton
-						title='Continue'
-						style={{
-							paddingLeft: 46,
-							paddingRight: 46,
-						}}
-						onPress={handleNext}
-					/>
-				</>
-			)
-			}
+					>while staying realistic!</Text>
+				</Text>
+			</Animated.View>
+			<Animated.View
+				style={[
+					{
+						opacity: fadeAnimBottomContent,
+					},
+				]}
+			>
+				<AppButton
+					title='Continue'
+					style={{
+						paddingLeft: 46,
+						paddingRight: 46,
+					}}
+					onPress={handleNext}
+				/>
+			</Animated.View>
 		</View>
 	);
 }

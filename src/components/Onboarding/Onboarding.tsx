@@ -46,7 +46,6 @@ const screenOptions = (
 	gestureEnabled: isBackButton,
 	headerStyle: {
 		backgroundColor: colors.background.white,
-		position: 'absolute',
 	},
 });
 
