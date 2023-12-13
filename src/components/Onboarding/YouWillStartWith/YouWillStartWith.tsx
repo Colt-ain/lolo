@@ -259,6 +259,7 @@ function YouWillStartWith() {
 				paddingHorizontal: 32,
 				justifyContent: isLastTextShown ? 'space-between' : 'flex-start',
 				paddingBottom: '8%',
+				backgroundColor: colors.background.white,
 			}}
 		>
 			<Animated.View

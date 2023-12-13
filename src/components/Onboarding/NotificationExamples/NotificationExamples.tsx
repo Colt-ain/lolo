@@ -64,6 +64,7 @@ function NotificationExamples({ navigation }: { navigation: any }) {
 			style={{
 				flex: 1,
 				justifyContent: 'space-between',
+				backgroundColor: colors.background.white,
 			}}
 		>
 			<Text

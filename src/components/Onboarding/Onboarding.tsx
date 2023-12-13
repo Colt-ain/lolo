@@ -51,6 +51,12 @@ const screenOptions = (
 
 const Onboarding = () => {
 	return (
+		<View
+			style={{
+				flex: 1,
+				backgroundColor: colors.purple,
+			}}
+		>
 		<NavigationContainer linking={linking}>
 			<Stack.Navigator initialRouteName={welcome}>
 				<Stack.Screen
@@ -80,6 +86,7 @@ const Onboarding = () => {
 				/>
 			</Stack.Navigator>
 		</NavigationContainer>
+		</View>
 	);
 };
 

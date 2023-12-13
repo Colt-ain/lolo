@@ -5,6 +5,7 @@ import { areasToImprove } from "../../../content/onboarding/areasToImprove";
 import AppButton from "~components/@common/AppButton";
 import { useNavigation } from "@react-navigation/native";
 import { onboardingRouteNames } from '~routes/onboarding/onboardingRouteNames';
+import { colors } from "~constants/colors";
 
 function AreasToImprove({ navigation }: { navigation: any }) {
 	const [areas, setAreas] = useState(areasToImprove.map((area) => ({
@@ -42,6 +43,7 @@ function AreasToImprove({ navigation }: { navigation: any }) {
 				paddingHorizontal: 32,
 				justifyContent: 'space-between',
 				paddingBottom: '8%',
+				backgroundColor: colors.background.white,
 			}}
 		>
 			<Text

@@ -27,6 +27,7 @@ function Welcome({ navigation }: any) {
 				flex: 1,
 				alignItems: "center",
 				justifyContent: "space-around",
+				backgroundColor: colors.background.white,
 			}}
 		>
 			<View
