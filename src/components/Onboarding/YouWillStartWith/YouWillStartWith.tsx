@@ -18,13 +18,14 @@ const texts = [
 	},
 ];
 
-const { width: viewportWidth, height } = Dimensions.get('window');
+const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
 
 const initialTimeout = 3000;
 const fadeTime = 300;
 const timeoutTime = 3000;
 const moveTimeBelow = 400;
 const moveTimeAbove = 500;
+const imageBottom = viewportHeight / 2 - 50;
 
 
 function YouWillStartWith() {
@@ -43,7 +44,7 @@ function YouWillStartWith() {
 	const fadeAnimNextTranslate = useRef(new Animated.Value(10)).current;
 
 	const fadeAnimTitle = useRef(new Animated.Value(1)).current;
-	const translateAnimation = useRef(new Animated.Value(100)).current;
+	const translateAnimation = useRef(new Animated.Value(140)).current;
 	const fadeAnimBottomContent = useRef(new Animated.Value(0)).current;
 
 	useEffect(() => {
@@ -134,7 +135,7 @@ function YouWillStartWith() {
 		console.log('move below');
 
 		Animated.timing(translateAnimation, {
-			toValue: 330,
+			toValue: imageBottom,
 			duration: moveTimeBelow,
 			useNativeDriver: true,
 			easing: Easing.bezier(0, 1, 1, 1),
@@ -145,7 +146,7 @@ function YouWillStartWith() {
 		console.log('move above');
 
 		Animated.timing(translateAnimation, {
-			toValue: 0,
+			toValue: 30,
 			duration: moveTimeAbove,
 			useNativeDriver: true,
 			easing: Easing.bezier(0, 1, 1, 1),
@@ -245,7 +246,7 @@ function YouWillStartWith() {
 			setIsLastTextShown(true);
 
 			fadeInBottomContent();
-		}, initialTimeout + timeoutTime * 3 + fadeTime * 3 + moveTimeAbove);
+		}, initialTimeout + timeoutTime * 3 + fadeTime * 3);
 
 		return () => clearTimeout(timer);
 	}, []);
@@ -351,6 +352,9 @@ function YouWillStartWith() {
 				style={[
 					{
 						opacity: fadeAnimBottomContent,
+					},
+					{
+						marginBottom: '5%',
 					},
 				]}
 			>
