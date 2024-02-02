@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Animated, Dimensions, Easing, ImageBackground, Text, View } from "react-native";
 import { colors } from "~constants/colors";
 import AppButton from "~components/@common/AppButton";
+import { onboardingRouteNames } from "~routes/onboarding/onboardingRouteNames";
 
 const texts = [
 	{
@@ -28,7 +29,7 @@ const moveTimeAbove = 500;
 const imageBottom = viewportHeight / 2 - 50;
 
 
-function YouWillStartWith() {
+function YouWillStartWith({ navigation }: { navigation: any }) {
 	const [isFadeAnimEnded, setIsFadeAnimEnded] = useState(false);
 	const [activeText, setActiveText] = useState<number>(0);
 
@@ -176,7 +177,7 @@ function YouWillStartWith() {
 	}, []);
 
 	const handleNext = () => {
-		console.log('next');
+		navigation.navigate(onboardingRouteNames.subscription);
 	}
 
 	useEffect(() => {

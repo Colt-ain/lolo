@@ -55,7 +55,6 @@ function Welcome({ navigation }: any) {
 					lineHeight: 32,
 					textAlign: 'center',
 					fontWeight: '500',
-					fontFamily: "Montserrat",
 				}}
 			>
 				<Text

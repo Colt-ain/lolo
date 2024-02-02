@@ -13,6 +13,7 @@ import { colors } from "~constants/colors";
 import ChooseLolo from '~components/Onboarding/ChooseLolo';
 import NotificationExamples from '~components/Onboarding/NotificationExamples';
 import YouWillStartWith from "~components/Onboarding/YouWillStartWith";
+import Subscription from "~components/Onboarding/Subscription";
 
 const { welcome, areasToImprove } = onboardingRouteNames;
 
@@ -39,6 +40,13 @@ const screenOptions = (
 	isBackButton: boolean,
 ) => ({ navigation }: { navigation: NavigationType }) => ({
 	title: '',
+	headerTitle: () => {
+		return(
+			<Text style={{ fontSize: 24, fontWeight: 'bold', color: colors.text.lightPurple, textAlign: 'center' }}>
+				{title}
+			</Text>
+		);
+	},
 	headerShown: headerShown,
 	headerBackTitleVisible: false,
 	headerLeft: headerLeftIcon(navigation, title, isBackButton),
@@ -83,6 +91,11 @@ const Onboarding = () => {
 					name={onboardingRouteNames.youWillStartWith}
 					component={YouWillStartWith}
 					options={screenOptions('', true, true)}
+				/>
+				<Stack.Screen
+					name={onboardingRouteNames.subscription}
+					component={Subscription}
+					options={screenOptions('GET PREMIUM 👑', true, true)}
 				/>
 			</Stack.Navigator>
 		</NavigationContainer>

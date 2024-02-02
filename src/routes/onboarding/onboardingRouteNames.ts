@@ -3,6 +3,7 @@ const areasToImprove = 'areasToImprove';
 const chooseLolo = 'chooseLolo';
 const notifivationExpamples = 'notifivationExpamples';
 const youWillStartWith = 'youWillStartWith';
+const subscription = 'subscription';
 
 export const onboardingRouteNames = {
 	welcome,
@@ -10,4 +11,5 @@ export const onboardingRouteNames = {
 	chooseLolo,
 	notifivationExpamples,
 	youWillStartWith,
+	subscription,
 }

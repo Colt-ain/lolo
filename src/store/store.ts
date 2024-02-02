@@ -13,9 +13,6 @@ export function setupStore(preloadedState: PreloadedState<RootState> = {}, isDev
 		devTools: isDevTools,
 	})
 
-	const createDebugger = require("redux-flipper").default;
-	middlewares.push(createDebugger());
-
 	return configureStore({
 		reducer: rootReducer,
 		preloadedState,
