@@ -42,9 +42,20 @@ const screenOptions = (
 	title: '',
 	headerTitle: () => {
 		return(
-			<Text style={{ fontSize: 24, fontWeight: 'bold', color: colors.text.lightPurple, textAlign: 'center' }}>
-				{title}
-			</Text>
+			<View
+				style={{
+					borderRadius: 4,
+					backgroundColor: '#F3ECD9',
+					paddingTop: 5,
+					paddingBottom: 5,
+					paddingLeft: 8,
+					paddingRight: 8,
+				}}
+			>
+				<Text style={{ fontSize: 12, fontWeight: 'bold', color: '#C53E13', textAlign: 'center' }}>
+					{title}
+				</Text>
+			</View>
 		);
 	},
 	headerShown: headerShown,
