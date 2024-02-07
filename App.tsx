@@ -29,6 +29,7 @@ import { setIsAuth } from "~slices/auth";
 import { colors } from "~constants/colors";
 import { linking } from "~components/Onboarding/Onboarding";
 import { NavigationContainer } from "@react-navigation/native";
+import { withIAPContext } from "react-native-iap";
 
 function App(): ReactElement {
 	const isDarkMode = useColorScheme() === "dark";
@@ -49,4 +50,4 @@ function App(): ReactElement {
 	);
 }
 
-export default App;
+export default withIAPContext(App);

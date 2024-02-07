@@ -14,6 +14,7 @@ import ChooseLolo from '~components/Onboarding/ChooseLolo';
 import NotificationExamples from '~components/Onboarding/NotificationExamples';
 import YouWillStartWith from "~components/Onboarding/YouWillStartWith";
 import Subscription from "~components/Onboarding/Subscription";
+import NotificationExplain from "~components/Onboarding/NotificationExplain";
 
 const { welcome, areasToImprove } = onboardingRouteNames;
 
@@ -77,7 +78,7 @@ const Onboarding = () => {
 			}}
 		>
 		<NavigationContainer linking={linking}>
-			<Stack.Navigator initialRouteName={welcome}>
+			<Stack.Navigator initialRouteName={onboardingRouteNames.notificationExplain}>
 				<Stack.Screen
 					name={onboardingRouteNames.welcome}
 					component={Welcome}
@@ -101,6 +102,11 @@ const Onboarding = () => {
 				<Stack.Screen
 					name={onboardingRouteNames.youWillStartWith}
 					component={YouWillStartWith}
+					options={screenOptions('', true, true)}
+				/>
+				<Stack.Screen
+					name={onboardingRouteNames.notificationExplain}
+					component={NotificationExplain}
 					options={screenOptions('', true, true)}
 				/>
 				<Stack.Screen

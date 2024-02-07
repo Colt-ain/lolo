@@ -4,11 +4,11 @@ import { Pressable, Text, View } from "react-native";
 import TickIcon from "~components/@common/Icons/TickIcon";
 
 function SubscriptionCard({
-	                          onClick,
-	                          subscription,
-	                          isTrial,
-	                          isActive,
-                          }: {
+	onClick,
+	subscription,
+	isTrial,
+	isActive,
+}: {
 	onClick: (sub: string) => void;
 	subscription: {
 		key: string;
@@ -32,7 +32,6 @@ function SubscriptionCard({
 				height: 120,
 				padding: 20,
 				marginTop: 20,
-				marginBottom: 20,
 				marginLeft: 20,
 				marginRight: 20,
 				backgroundColor: colors.background.white,

@@ -1,8 +1,12 @@
-import React, { useState } from "react";
-import { Text, View, FlatList } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Text, View, FlatList, Platform } from "react-native";
 import SubscriptionCard from "./SubscriptionCard";
 import { colors } from "~constants/colors";
 import AppButton from "~components/@common/AppButton";
+import * as RNIap from "react-native-iap";
+import { Product } from "react-native-iap";
+import { getSubscriptions } from "react-native-iap/src/iap";
+import axios from "axios";
 
 const subs = [
 	{
@@ -24,6 +28,18 @@ const subs = [
 
 function Subscription() {
 	const [subscription, setSubscription] = useState(subs[0]);
+
+	useEffect(() => {
+		RNIap.initConnection().then((connected) => {
+			console.log('connected', connected);
+
+			RNIap.getSubscriptions({ skus: ['com.paliakova.lolo'] }).then((res) => {
+				console.log('subs', res);
+			});
+		}).catch((err: any) => {
+			console.log('err', err);
+		});
+	}, []);
 
 	const handleChangeSubscription = (sub: string) => {
 		console.log(sub);
@@ -84,35 +100,50 @@ function Subscription() {
 							</View>
 						);
 					}}
-
 				/>
 			</View>
 			<View>
-				<FlatList
-					data={subs}
-					renderItem={({ item }) => {
-						return (
+				{
+					subs.map((item) => {
+						return(
 							<SubscriptionCard
+								key={item.key}
 								onClick={handleChangeSubscription}
 								subscription={item}
 								isTrial={item.isTrial}
 								isActive={subscription?.key === item.key}
 							/>
 						);
-					}}
-				/>
+					})
+				}
 			</View>
 			<View>
 				<Text style={{
 					textAlign: 'center',
+					marginTop:5,
+					marginBottom: 10,
 				}}>
 					7 days for free, then $2 billed monthly
 				</Text>
 			</View>
-			<View>
+			<View
+				style={{
+					justifyContent: 'center',
+					alignItems: 'center',
+				}}
+			>
 				<AppButton
-					title={subscription?.buttonText || 's'}
+					title={subscription?.buttonText || ''}
 				/>
+			</View>
+			<View style={{
+				flexDirection: 'row',
+				alignItems: 'center',
+				justifyContent: 'center',
+				marginTop: 20,
+			}}>
+				<Text>Terms of Service   </Text>
+				<Text>Privacy Policy</Text>
 			</View>
 		</View>
 	);

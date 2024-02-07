@@ -177,7 +177,7 @@ function YouWillStartWith({ navigation }: { navigation: any }) {
 	}, []);
 
 	const handleNext = () => {
-		navigation.navigate(onboardingRouteNames.subscription);
+		navigation.navigate(onboardingRouteNames.notificationExplain);
 	}
 
 	useEffect(() => {

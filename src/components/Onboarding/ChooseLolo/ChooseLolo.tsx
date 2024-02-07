@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { ImageBackground, ScrollView, Text, View } from "react-native";
+import { Image, ImageBackground, ScrollView, Text, View } from "react-native";
 import {Dimensions} from 'react-native';
 import AppButton from '~components/@common/AppButton';
 import { onboardingRouteNames } from '~routes/onboarding/onboardingRouteNames';
@@ -17,7 +17,7 @@ function ChooseLolo({ navigation }: { navigation: any }) {
 	};
 
 	const [state, setState] = useState({
-		activeIndex: 3,
+		activeIndex: 1,
 		carouselItems: [
 			{
 				title:"Item 1",
@@ -62,7 +62,7 @@ function ChooseLolo({ navigation }: { navigation: any }) {
 					borderRadius: 15,
 					// overflow: 'hidden',
 				}}>
-				<ImageBackground
+				<Image
 					source={item.imagePath}
 					style={{
 						width: carouselItemWidth,
@@ -140,14 +140,13 @@ function ChooseLolo({ navigation }: { navigation: any }) {
 						onBeforeSnapToItem={() => {
 							console.log('snap');
 						}}
-						layout='stack'
-						layoutCardOffset={carouselItemWidth - 12}
 						inactiveSlideOpacity={1}
 						firstItem={state.activeIndex}
+						inactiveSlideScale={1}
+						layout={'default'}
 					/>
 				</View>
 			</View>
-
 			<View
 				style={{
 					flexDirection: 'row',
