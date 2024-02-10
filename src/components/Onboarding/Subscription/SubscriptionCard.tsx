@@ -30,7 +30,7 @@ function SubscriptionCard({
 				flexDirection: "row",
 				justifyContent: "space-between",
 				height: 120,
-				padding: 20,
+				padding: 24,
 				marginTop: 20,
 				marginLeft: 20,
 				marginRight: 20,
@@ -73,8 +73,10 @@ function SubscriptionCard({
 					>
 						<Text
 							style={{
+								fontFamily: 'Montserrat',
 								fontWeight: '400',
 								color: '#C53E13',
+								fontSize: 12,
 							}}
 						>
 							{subscription.trialText}
@@ -83,10 +85,12 @@ function SubscriptionCard({
 					}
 					<Text
 						style={{
+							fontFamily: 'Montserrat',
 							fontWeight: '500',
 						}}
 					>{subscription.text}</Text>
 					<Text style={{
+						fontFamily: 'Montserrat',
 						color: '#5B5F5E',
 						fontWeight: '300',
 					}}>{subscription.description}</Text>

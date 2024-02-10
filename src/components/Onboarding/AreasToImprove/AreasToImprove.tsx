@@ -48,6 +48,7 @@ function AreasToImprove({ navigation }: { navigation: any }) {
 		>
 			<Text
 				style={{
+					fontFamily: 'Montserrat',
 					fontSize: 22,
 					fontWeight: '600',
 					lineHeight: 32,

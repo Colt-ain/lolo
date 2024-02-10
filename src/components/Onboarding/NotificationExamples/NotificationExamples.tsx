@@ -69,6 +69,7 @@ function NotificationExamples({ navigation }: { navigation: any }) {
 		>
 			<Text
 				style={{
+					fontFamily: 'Montserrat',
 					paddingHorizontal: 32,
 					fontSize: 22,
 					fontWeight: '600',
@@ -135,6 +136,7 @@ function NotificationExamples({ navigation }: { navigation: any }) {
 							>
 								<Text
 									style={{
+										fontFamily: 'Montserrat',
 										fontSize: 15,
 										letterSpacing: -0.5,
 										fontWeight: '600',
@@ -145,6 +147,7 @@ function NotificationExamples({ navigation }: { navigation: any }) {
 								</Text>
 								<Text
 									style={{
+										fontFamily: 'Montserrat',
 										fontSize: 15,
 										letterSpacing: -0.5,
 										fontWeight: '300',

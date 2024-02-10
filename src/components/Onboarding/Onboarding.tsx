@@ -1,20 +1,20 @@
-import React from "react";
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import Welcome from "~components/Onboarding/Welcome";
+import Welcome from '~components/Onboarding/Welcome';
 
-import { onboardingRouteNames } from "~routes/onboarding/onboardingRouteNames";
-import AreasToImprove from "~components/Onboarding/AreasToImprove/AreasToImprove";
-import { SafeAreaView, Text, View } from "react-native";
-import BackButton from "~components/@common/BackBtn";
-import { NavigationType } from "../../interfaces";
-import { colors } from "~constants/colors";
+import { onboardingRouteNames } from '~routes/onboarding/onboardingRouteNames';
+import AreasToImprove from '~components/Onboarding/AreasToImprove/AreasToImprove';
+import { Text, View } from 'react-native';
+import BackButton from '~components/@common/BackBtn';
+import { NavigationType } from '../../interfaces';
+import { colors } from '~constants/colors';
 import ChooseLolo from '~components/Onboarding/ChooseLolo';
 import NotificationExamples from '~components/Onboarding/NotificationExamples';
-import YouWillStartWith from "~components/Onboarding/YouWillStartWith";
-import Subscription from "~components/Onboarding/Subscription";
-import NotificationExplain from "~components/Onboarding/NotificationExplain";
+import YouWillStartWith from '~components/Onboarding/YouWillStartWith';
+import Subscription from '~components/Onboarding/Subscription';
+import NotificationExplain from '~components/Onboarding/NotificationExplain';
 
 const { welcome, areasToImprove } = onboardingRouteNames;
 
@@ -37,23 +37,29 @@ const headerLeftIcon = (navigation: NavigationType, title: string, isBackButton:
 
 const screenOptions = (
 	title: string,
-	headerShown: boolean = true,
+	headerShown = true,
 	isBackButton: boolean,
 ) => ({ navigation }: { navigation: NavigationType }) => ({
 	title: '',
 	headerTitle: () => {
-		return(
+		return (
 			<View
 				style={{
 					borderRadius: 4,
-					backgroundColor: '#F3ECD9',
+					backgroundColor: title ? '#F3ECD9' : 'transparent',
 					paddingTop: 5,
 					paddingBottom: 5,
 					paddingLeft: 8,
 					paddingRight: 8,
 				}}
 			>
-				<Text style={{ fontSize: 12, fontWeight: 'bold', color: '#C53E13', textAlign: 'center' }}>
+				<Text style={{
+					fontFamily: 'Montserrat',
+					fontSize: 12,
+					fontWeight: 'bold',
+					color: '#C53E13',
+					textAlign: 'center',
+				}}>
 					{title}
 				</Text>
 			</View>
@@ -78,7 +84,7 @@ const Onboarding = () => {
 			}}
 		>
 		<NavigationContainer linking={linking}>
-			<Stack.Navigator initialRouteName={onboardingRouteNames.notificationExplain}>
+			<Stack.Navigator initialRouteName={onboardingRouteNames.welcome}>
 				<Stack.Screen
 					name={onboardingRouteNames.welcome}
 					component={Welcome}

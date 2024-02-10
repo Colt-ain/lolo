@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Text, View, FlatList, Platform } from "react-native";
-import SubscriptionCard from "./SubscriptionCard";
-import { colors } from "~constants/colors";
-import AppButton from "~components/@common/AppButton";
-import * as RNIap from "react-native-iap";
-import { Product } from "react-native-iap";
-import { getSubscriptions } from "react-native-iap/src/iap";
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import { Text, View, FlatList } from 'react-native';
+import SubscriptionCard from './SubscriptionCard';
+import { colors } from '~constants/colors';
+import AppButton from '~components/@common/AppButton';
+import * as RNIap from 'react-native-iap';
 
 const subs = [
 	{
@@ -44,7 +41,7 @@ function Subscription() {
 	const handleChangeSubscription = (sub: string) => {
 		console.log(sub);
 		setSubscription(subs.find((s) => s.key === sub));
-	}
+	};
 
 	return (
 		<View
@@ -54,48 +51,55 @@ function Subscription() {
 		>
 			<Text
 				style={{
+					fontFamily: 'Montserrat',
 					width: 334,
 					fontSize: 24,
-					fontWeight: 'bold',
-					marginTop: 20,
+					fontWeight: '600',
+					marginTop: 10,
 					marginLeft: 20,
 					marginBottom: 20,
 					textAlign: 'center',
 				}}
 			>Unlock <Text style={{
 				color: colors.purple,
-			}}>your inner strength with Lolo!</Text></Text>
-			<View>
+			}}>your inner power with Lolo!</Text></Text>
+			<View
+					style={{
+						marginHorizontal: 27,
+						marginBottom: 10,
+					}}
+			>
 				<FlatList
 					data={[
 						{
 							key: '1',
-							text: 'Special affirmations program, carefully designed in collaboration with psychologists 👍'
+							text: 'Special affirmations program, carefully designed in collaboration with psychologists 👍',
 						},
 						{ key: '2', text: 'Tailored support throughout the whole day 🙏' },
 						{ key: '3', text: 'Unlimited affirmations 🔥' },
 					]}
+					scrollEnabled={false}
 					renderItem={({ item }) => {
-						return(
+						return (
 							<View
 								style={{
 									flexDirection: 'row',
 									alignItems: 'flex-start',
+									justifyContent: 'flex-start',
+									marginTop: 10,
 								}}
 							>
-								<View style={{
-									marginTop: 18,
-									height: 2,
-									width: 2,
-									borderRadius: 1,
-									backgroundColor: '#000s',
-									marginLeft: 20,
-								}}/>
+								<Text
+										style={{
+											fontFamily: 'Montserrat',
+											fontSize: 18,
+											fontWeight: '400',
+										}}
+								>• </Text>
 								<Text style={{
-									marginTop: 10,
-									marginBottom: 0,
-									marginLeft: 5,
-									marginRight: 20,
+									fontFamily: 'Montserrat',
+									fontSize: 18,
+									fontWeight: '400',
 								}}>{item.text}</Text>
 							</View>
 						);
@@ -105,7 +109,7 @@ function Subscription() {
 			<View>
 				{
 					subs.map((item) => {
-						return(
+						return (
 							<SubscriptionCard
 								key={item.key}
 								onClick={handleChangeSubscription}
@@ -120,8 +124,8 @@ function Subscription() {
 			<View>
 				<Text style={{
 					textAlign: 'center',
-					marginTop:5,
-					marginBottom: 10,
+					marginTop: 30,
+					marginBottom: 18,
 				}}>
 					7 days for free, then $2 billed monthly
 				</Text>

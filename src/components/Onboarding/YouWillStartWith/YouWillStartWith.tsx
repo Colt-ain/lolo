@@ -273,6 +273,7 @@ function YouWillStartWith({ navigation }: { navigation: any }) {
 			>
 				<Text
 					style={{
+						fontFamily: 'Montserrat',
 						fontSize: 22,
 						fontWeight: '600',
 						lineHeight: 32,
@@ -281,6 +282,7 @@ function YouWillStartWith({ navigation }: { navigation: any }) {
 				>
 					As you read and internalize <Text
 					style={{
+						fontFamily: 'Montserrat',
 						fontSize: 22,
 						fontWeight: '600',
 						lineHeight: 32,
@@ -304,6 +306,7 @@ function YouWillStartWith({ navigation }: { navigation: any }) {
 			>
 				<Text
 					style={{
+						fontFamily: 'Montserrat',
 						fontSize: 51,
 						lineHeight: 58,
 						fontWeight: '600',
@@ -361,6 +364,7 @@ function YouWillStartWith({ navigation }: { navigation: any }) {
 			>
 				<Text
 					style={{
+						fontFamily: 'Montserrat',
 						fontSize: 51,
 						lineHeight: 58,
 						fontWeight: '600',
@@ -371,6 +375,7 @@ function YouWillStartWith({ navigation }: { navigation: any }) {
 					And see the bright side of things{'\n'}
 					<Text
 						style={{
+							fontFamily: 'Montserrat',
 							fontSize: 22,
 							fontWeight: '600',
 							lineHeight: 32,

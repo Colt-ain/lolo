@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"android": "react-native run-android",
-		"ios": "react-native run-ios -- --simulator=\"iPhone 15 Pro\"",
+		"ios": "react-native run-ios -- --simulator=\"iPhone 14\"",
 		"start": "APP_ENV=development react-native start --reset-cache",
 		"pod-install": "cd ./ios && pod deintegrate && pod install --repo-update && cd ..",
 		"restart": "rm -rf node_modules && watchman watch-del-all && yarn install --repo-update && cd ./ios && pod deintegrate && npm run pod-install && cd ../ && APP_ENV=development react-native start",

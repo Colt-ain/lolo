@@ -88,6 +88,7 @@ function ChooseLolo({ navigation }: { navigation: any }) {
 			>
 				<Text
 					style={{
+						fontFamily: 'Montserrat',
 						fontSize: 22,
 						fontWeight: '600',
 						lineHeight: 32,
@@ -97,6 +98,7 @@ function ChooseLolo({ navigation }: { navigation: any }) {
 					}}
 				>Meet Lolo — an avatar of <Text
 					style={{
+						fontFamily: 'Montserrat',
 						color: colors.purple,
 					}}
 				>your inner loving and supportive self</Text>
@@ -105,6 +107,7 @@ function ChooseLolo({ navigation }: { navigation: any }) {
 			<View>
 				<Text
 					style={{
+						fontFamily: 'Montserrat',
 						fontSize: 18,
 						fontWeight: '300',
 						lineHeight: 32,
@@ -193,6 +196,7 @@ function ChooseLolo({ navigation }: { navigation: any }) {
 				>
 					<Text
 						style={{
+							fontFamily: 'Montserrat',
 							fontSize: 15,
 							letterSpacing: -0.5,
 							fontWeight: '600',
@@ -203,6 +207,7 @@ function ChooseLolo({ navigation }: { navigation: any }) {
 					</Text>
 					<Text
 						style={{
+							fontFamily: 'Montserrat',
 							fontSize: 15,
 							letterSpacing: -0.5,
 							fontWeight: '300',

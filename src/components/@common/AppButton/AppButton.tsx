@@ -51,7 +51,9 @@ export default function AppButton({
 		>
 			<Text
 				style={{
+					fontFamily: 'Montserrat',
 					fontSize: 18,
+					fontWeight: '500',
 					color: disabled
 						? colors.text.black
 						: isPressed

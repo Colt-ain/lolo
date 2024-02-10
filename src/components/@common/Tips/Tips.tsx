@@ -36,9 +36,10 @@ export function Tip({
 		>
 			<Text
 				style={{
+					fontFamily: 'Montserrat',
 					textAlign: "center",
 					fontSize: 18,
-					fontWeight: "400",
+					fontWeight: "500",
 					color: isActive ? "#fff" : colors.text.black,
 				}}
 			>{title}</Text>

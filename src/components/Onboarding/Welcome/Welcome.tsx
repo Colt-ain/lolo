@@ -55,23 +55,26 @@ function Welcome({ navigation }: any) {
 					lineHeight: 32,
 					textAlign: 'center',
 					fontWeight: '500',
+					fontFamily: 'Montserrat',
 				}}
 			>
 				<Text
 					style={{
+						fontFamily: 'Montserrat',
 						fontSize: 28,
 						color: colors.text.black,
 					}}
 				>Welcome to Lolo{"\n\n"}</Text>
 				<Text
 					style={{
+						fontFamily: 'Montserrat',
 						fontSize: 24,
 						color: colors.text.black,
 						fontWeight: '500',
 					}}
 				>
 					A space of love and support,{"\n"} designed to help you{"\n"}<Text
-					style={{ color: colors.purple }}>
+					style={{ color: colors.purple, fontFamily: 'Montserrat' }}>
 					discover your inner strength{"\n"}
 				</Text> with daily affirmations.
 				</Text>
