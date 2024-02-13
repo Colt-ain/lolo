@@ -394,6 +394,8 @@ function YouWillStartWith({ navigation }: { navigation: any }) {
 				<AppButton
 					title='Continue'
 					style={{
+						width: 180,
+						alignSelf: 'center',
 						paddingLeft: 46,
 						paddingRight: 46,
 					}}

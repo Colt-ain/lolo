@@ -33,8 +33,9 @@ export const linking = {
 	},
 };
 
-const headerLeftIcon = (navigation: NavigationType, title: string, isBackButton: boolean) => () =>
-	<BackButton navigation={navigation} title={title} isBackButton={isBackButton}/>;
+const headerLeftIcon = (navigation: NavigationType, title: string, isBackButton: boolean) => () => {
+	return <BackButton navigation={navigation} title={title} isBackButton={isBackButton}/>;
+};
 
 const screenOptions = (
 	title: string,
