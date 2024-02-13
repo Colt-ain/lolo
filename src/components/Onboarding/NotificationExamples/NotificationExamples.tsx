@@ -6,16 +6,16 @@ import AppButton from '~components/@common/AppButton';
 import LinearGradient from 'react-native-linear-gradient'
 import { TimeoutId } from '@reduxjs/toolkit/dist/query/core/buildMiddleware/types';
 import { onboardingRouteNames } from "~routes/onboarding/onboardingRouteNames";
+import { RootState } from "~store/store";
+import { useSelector } from "react-redux";
 
 const styles = StyleSheet.create({
 	linearGradient: {
 		flex: 1,
 		justifyContent: 'flex-end',
 		alignItems: 'center',
-		paddingTop: 20,
-		paddingLeft: 15,
-		paddingRight: 15,
-		paddingBottom: 60,
+		flexDirection: 'column',
+		paddingBottom: 40,
 	},
 	buttonText: {
 		fontSize: 18,
@@ -28,6 +28,8 @@ const styles = StyleSheet.create({
 });
 
 function NotificationExamples({ navigation }: { navigation: any }) {
+	const avatar = useSelector((state: RootState) => state.onboarding.avatar);
+
 	const intervalId = useRef<TimeoutId>();
 
 	const scrollView = useRef<ScrollView | null>(null);
@@ -68,6 +70,15 @@ function NotificationExamples({ navigation }: { navigation: any }) {
 			}}
 		>
 			<Text
+					style={{
+						fontFamily: 'Montserrat',
+						fontSize: 22,
+						fontWeight: '600',
+						textAlign: 'center',
+						marginBottom: 10,
+					}}
+			>Wonderful choice 💫</Text>
+			<Text
 				style={{
 					fontFamily: 'Montserrat',
 					paddingHorizontal: 32,
@@ -78,8 +89,11 @@ function NotificationExamples({ navigation }: { navigation: any }) {
 					marginBottom: 30,
 				}}
 			>
-				Wonderful choice 💫
-				Your Lolo will send you wise affirmations throughout the day, that will cultivate your inner strength.
+				Your Lolo will send you wise{'\n'}<Text
+					style={{
+						color: colors.purple,
+					}}
+				>affirmations</Text> throughout the{'\n'}day, that will cultivate your{'\n'}inner strength.
 			</Text>
 			<ScrollView
 				ref={ref => scrollView.current = ref}
@@ -119,7 +133,7 @@ function NotificationExamples({ navigation }: { navigation: any }) {
 								}}
 							>
 								<ImageBackground
-									source={require('~assets/img/ob-2.png')}
+									source={avatar?.imagePath || require('~assets/img/ob-2.png')}
 									style={{
 										width: '100%',
 										height: '100%',
@@ -150,7 +164,7 @@ function NotificationExamples({ navigation }: { navigation: any }) {
 										fontFamily: 'Montserrat',
 										fontSize: 15,
 										letterSpacing: -0.5,
-										fontWeight: '300',
+										fontWeight: '400',
 										lineHeight: 20,
 									}}
 								>

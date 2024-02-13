@@ -1,80 +1,123 @@
-import React, { useRef, useState } from "react";
-import { Image, ImageBackground, ScrollView, Text, View } from "react-native";
-import {Dimensions} from 'react-native';
+import React, { useRef, useState } from 'react';
+import { Image, ImageBackground, ScrollView, Text, View } from 'react-native';
+import { Dimensions } from 'react-native';
 import AppButton from '~components/@common/AppButton';
 import { onboardingRouteNames } from '~routes/onboarding/onboardingRouteNames';
-import Carousel from "react-native-snap-carousel";
-import { colors } from "~constants/colors";
+import Carousel from 'react-native-snap-carousel';
+import { colors } from '~constants/colors';
+import { KeenSliderNativeInstance, useKeenSliderNative } from "keen-slider/react-native";
+import { useDispatch } from 'react-redux';
+import { setAvatar } from "~slices/onboarding";
+import notificationExample from "../../../content/notificationExamples";
 
 const { width: viewportWidth, height } = Dimensions.get('window');
 
+const styles = {
+	slider: {
+		overflow: 'hidden',
+	},
+	slide: {
+		width: '100%',
+		height: '100%',
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: 'black',
+	},
+	text: {
+		color: 'white',
+		fontSize: 30,
+	},
+};
+
+const carouselItems = [
+	{
+		title: 'Item 1',
+		text: 'Text 1',
+		imagePath: require('../../../assets/img/avatars/av-1.png'),
+	},
+	{
+		title: 'Item 2',
+		text: 'Text 2',
+		imagePath: require('../../../assets/img/avatars/av-2.png'),
+	},
+	{
+		title: 'Item 3',
+		text: 'Text 3',
+		imagePath: require('../../../assets/img/avatars/av-3.png'),
+	},
+	{
+		title: 'Item 4',
+		text: 'Text 4',
+		imagePath: require('../../../assets/img/avatars/av-4.png'),
+	},
+	{
+		title: 'Item 5',
+		text: 'Text 5',
+		imagePath: require('../../../assets/img/avatars/av-5.png'),
+	},
+];
+
 function ChooseLolo({ navigation }: { navigation: any }) {
-	const carouselContainerRef = useRef(null);
-	const carouselRef = useRef(null);
-
-	const onNextPress = () => {
-		navigation.navigate(onboardingRouteNames.notifivationExpamples);
-	};
-
-	const [state, setState] = useState({
-		activeIndex: 1,
-		carouselItems: [
-			{
-				title:"Item 1",
-				text: "Text 1",
-				imagePath: require('../../../assets/img/avatars/av-1.png'),
-			},
-			{
-				title:"Item 2",
-				text: "Text 2",
-				imagePath: require('../../../assets/img/avatars/av-2.png'),
-			},
-			{
-				title:"Item 3",
-				text: "Text 3",
-				imagePath: require('../../../assets/img/avatars/av-3.png'),
-			},
-			{
-				title:"Item 4",
-				text: "Text 4",
-				imagePath: require('../../../assets/img/avatars/av-4.png'),
-			},
-			{
-				title:"Item 5",
-				text: "Text 5",
-				imagePath: require('../../../assets/img/avatars/av-5.png'),
-			},
-		]
-	});
+	const dispatch = useDispatch();
 
 	const padding = 25;
 	const carouselItemWidth = viewportWidth - padding * 2 - 14;
-	const carouselHeight = viewportWidth - padding * 2;
 
-	const _renderItem = ({ item, index }: { item: { title: string; text: string, imagePath: number, }; index: number }) => {
-		const isActive = state.activeIndex === index;
+	const carouselWidth = carouselItemWidth * 2;
+	const carouselHeight = carouselItemWidth * 0.9;
 
-		return (
-			<View
-				key={index+item.title}
-				style={{
-					backgroundColor:'floralwhite',
-					borderRadius: 15,
-					// overflow: 'hidden',
-				}}>
-				<Image
-					source={item.imagePath}
-					style={{
-						width: carouselItemWidth,
-						height: carouselItemWidth,
-						borderRadius: 10,
-						overflow: 'hidden',
-					}}
-				/>
-			</View>
+	const slider = useKeenSliderNative({
+		mode: 'snap',
+		slides: {
+			number: carouselItems.length,
+			origin: 'center',
+			perView: 2,
+			spacing: 20,
+		},
+		initial: 0,
+		slideChanged(s: KeenSliderNativeInstance) {
+			setState({ ...state, activeIndex: s.track.details.abs });
+		},
+	});
 
-		)
-	}
+	const onNextPress = () => {
+		if (carouselItems[state.activeIndex]) {
+			dispatch(setAvatar({ avatar: carouselItems[state.activeIndex]! }));
+
+			navigation.navigate(onboardingRouteNames.notifivationExpamples);
+		}
+	};
+
+	const [state, setState] = useState({
+		activeIndex: 0,
+		carouselItems: [
+			{
+				title: 'Item 1',
+				text: 'Text 1',
+				imagePath: require('../../../assets/img/avatars/av-1.png'),
+			},
+			{
+				title: 'Item 2',
+				text: 'Text 2',
+				imagePath: require('../../../assets/img/avatars/av-2.png'),
+			},
+			{
+				title: 'Item 3',
+				text: 'Text 3',
+				imagePath: require('../../../assets/img/avatars/av-3.png'),
+			},
+			{
+				title: 'Item 4',
+				text: 'Text 4',
+				imagePath: require('../../../assets/img/avatars/av-4.png'),
+			},
+			{
+				title: 'Item 5',
+				text: 'Text 5',
+				imagePath: require('../../../assets/img/avatars/av-5.png'),
+			},
+		],
+	});
 
 	return (
 		<View
@@ -82,10 +125,10 @@ function ChooseLolo({ navigation }: { navigation: any }) {
 				flex: 1,
 				justifyContent: 'space-between',
 				backgroundColor: colors.background.white,
+				overflow: 'hidden',
 			}}
 		>
-			<View
-			>
+			<View>
 				<Text
 					style={{
 						fontFamily: 'Montserrat',
@@ -104,125 +147,158 @@ function ChooseLolo({ navigation }: { navigation: any }) {
 				>your inner loving and supportive self</Text>
 				</Text>
 			</View>
-			<View>
+			<View
+				style={{
+					flexDirection: 'column',
+					justifyContent: 'flex-start',
+					alignItems: 'flex-start',
+				}}
+			>
 				<Text
 					style={{
 						fontFamily: 'Montserrat',
 						fontSize: 18,
-						fontWeight: '300',
 						lineHeight: 32,
 						textAlign: 'center',
-						marginBottom: 20,
+						marginBottom: 25,
+						marginLeft: 30,
+						fontWeight: '400',
 					}}
 				>
 					Pick the one that resonates with you
 				</Text>
-				<View ref={carouselContainerRef}>
+				{/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+				{/*@ts-ignore*/}
+				<View
+					{...slider.containerProps}
+					style={{
+						height: carouselHeight,
+						width: carouselWidth,
+						marginLeft: - carouselWidth / 4 + 20 + 12,
+					}}
+				>
 					<View
-						style={{
-							position: 'absolute',
-							top: -7,
-							left: padding,
-							width: carouselHeight,
-							height: carouselHeight,
-							borderRadius: 15,
-							borderColor: '#1BC88A',
-							borderWidth: 3,
-						}}
+							style={{
+								alignSelf: 'center',
+								left: padding,
+								width: carouselItemWidth + 4,
+								height: carouselHeight + 14,
+								marginTop: -7,
+								marginLeft: -50,
+								borderRadius: 15,
+								borderColor: '#1BC88A',
+								borderWidth: 3,
+							}}
 					/>
-					<Carousel
-						ref={carouselRef}
-						data={state.carouselItems}
-						renderItem={_renderItem}
-						sliderWidth={viewportWidth}
-						itemWidth={carouselItemWidth}
-						onSnapToItem = { index => setState((prevState) => ({
-							...prevState,
-							activeIndex: index,
-						}))}
-						onBeforeSnapToItem={() => {
-							console.log('snap');
-						}}
-						inactiveSlideOpacity={1}
-						firstItem={state.activeIndex}
-						inactiveSlideScale={1}
-						layout={'default'}
-					/>
-				</View>
-			</View>
-			<View
-				style={{
-					flexDirection: 'row',
-					padding: 16,
-					marginTop: 20,
-					marginLeft: padding,
-					marginRight: padding,
-					marginBottom: 20,
-					backgroundColor: colors.background.white,
-					borderRadius: 15,
-					shadowColor: "#000",
-					shadowOffset: {
-						width: 2,
-						height: 4,
-					},
-					shadowOpacity: 0.08,
-					shadowRadius: 6,
-					elevation: 0,
-				}}
-			>
-				<View
-					style={{
-						width: 44,
-						height: 44,
-						borderRadius: 12,
-						overflow: 'hidden',
-					}}
-				>
-					<ImageBackground
-						source={state.carouselItems[state.activeIndex]?.imagePath}
-						style={{
-							width: '100%',
-							height: '100%',
-						}}
-						resizeMode='cover'
-					/>
+					{[...Array(carouselItems.length).keys()].map(idx => {
+						return (
+								// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+								// @ts-ignore
+								<View
+										key={idx}
+										{...slider.slidesProps[idx]}
+										style={{
+											borderRadius: 10,
+											overflow: 'hidden',
+											width: carouselItemWidth,
+											height: carouselItemWidth * 0.9,
+										}}
+								>
+									<ImageBackground
+										source={carouselItems[idx]?.imagePath}
+										style={{
+											flex: 1,
+											justifyContent: 'center',
+										}}
+										resizeMode='cover'
+									/>
+								</View>
+						);
+					})}
 				</View>
 				<View
 					style={{
-						flex: 1,
-						marginLeft: 10,
-						flexDirection: 'column',
+						width: '100%',
+						height: 100,
+						marginTop: 27,
 					}}
 				>
-					<Text
-						style={{
-							fontFamily: 'Montserrat',
-							fontSize: 15,
-							letterSpacing: -0.5,
-							fontWeight: '600',
-							lineHeight: 20,
-						}}
+					<View
+							style={{
+								flexDirection: 'row',
+								backgroundColor: colors.background.white,
+								borderRadius: 15,
+								shadowColor: '#000',
+								shadowOffset: {
+									width: 2,
+									height: 4,
+								},
+								shadowOpacity: 0.08,
+								shadowRadius: 6,
+								elevation: 0,
+								marginLeft: padding,
+								marginRight: padding,
+								padding: 16,
+							}}
 					>
-						Lolo
-					</Text>
-					<Text
-						style={{
-							fontFamily: 'Montserrat',
-							fontSize: 15,
-							letterSpacing: -0.5,
-							fontWeight: '300',
-							lineHeight: 20,
-						}}
-					>
-						I am me, and that is my strength
-					</Text>
+						<View
+								style={{
+									width: 44,
+									height: 44,
+									borderRadius: 12,
+									overflow: 'hidden',
+								}}
+						>
+							<ImageBackground
+									source={state.carouselItems[state.activeIndex]?.imagePath}
+									style={{
+										width: '100%',
+										height: '100%',
+									}}
+									resizeMode='cover'
+							/>
+						</View>
+						<View
+								style={{
+									flex: 1,
+									marginLeft: 10,
+									flexDirection: 'column',
+								}}
+						>
+							<Text
+									style={{
+										fontFamily: 'Montserrat',
+										fontSize: 15,
+										letterSpacing: -0.5,
+										fontWeight: '600',
+										lineHeight: 20,
+									}}
+							>
+								Lolo
+							</Text>
+							<Text
+									style={{
+										fontFamily: 'Montserrat',
+										fontSize: 15,
+										letterSpacing: -0.5,
+										fontWeight: '400',
+										lineHeight: 20,
+									}}
+							>
+								{notificationExample[state.activeIndex]?.text}
+							</Text>
+						</View>
+					</View>
 				</View>
 			</View>
+
 			<AppButton
 				style={{
 					marginLeft: padding,
 					marginRight: padding,
-					marginBottom: 25,
+					marginBottom: 40,
+					width: 250,
+					alignSelf: 'center',
 				}}
 				title={'Pick this Lolo'}
 				onPress={onNextPress}

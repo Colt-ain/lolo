@@ -42,7 +42,7 @@ function AreasToImprove({ navigation }: { navigation: any }) {
 				flex: 1,
 				paddingHorizontal: 32,
 				justifyContent: 'space-between',
-				paddingBottom: '8%',
+				paddingBottom: 40,
 				backgroundColor: colors.background.white,
 			}}
 		>
@@ -69,9 +69,13 @@ function AreasToImprove({ navigation }: { navigation: any }) {
 				/>
 			</View>
 			<AppButton
-				title={isChosen ? 'Next' : 'Skip'}
+				title={isChosen ? 'Continue' : 'Skip'}
 				onPress={onNextPress}
 				disabled={!isChosen}
+				style={{
+					width: 180,
+					alignSelf: 'center',
+				}}
 			/>
 		</View>
 	);

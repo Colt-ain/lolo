@@ -26,59 +26,72 @@ function Welcome({ navigation }: any) {
 			style={{
 				flex: 1,
 				alignItems: "center",
-				justifyContent: "space-around",
+				justifyContent: "space-between",
 				backgroundColor: colors.background.white,
+				paddingTop: 86,
+				paddingBottom: 40,
 			}}
 		>
 			<View
 				style={{
-					width: 160,
-					height: 160,
-					borderRadius: 80,
-					overflow: 'hidden',
+					flex: 1,
+					alignItems: "center",
+					justifyContent: "flex-start",
 				}}
 			>
-				<ImageBackground
-					source={require('~assets/img/ob-1.png')}
-					style={{
-						width: 500,
-						height: 500,
-						position: 'absolute',
-						top: -195,
-						left: -110,
-					}}
-					resizeMode='contain'
-				/>
-			</View>
-			<Text
-				style={{
-					lineHeight: 32,
-					textAlign: 'center',
-					fontWeight: '500',
-					fontFamily: 'Montserrat',
-				}}
-			>
-				<Text
-					style={{
-						fontFamily: 'Montserrat',
-						fontSize: 28,
-						color: colors.text.black,
-					}}
-				>Welcome to Lolo{"\n\n"}</Text>
-				<Text
-					style={{
-						fontFamily: 'Montserrat',
-						fontSize: 24,
-						color: colors.text.black,
-						fontWeight: '500',
-					}}
+				<View
+						style={{
+							width: 160,
+							height: 160,
+							borderRadius: 80,
+							overflow: 'hidden',
+							marginBottom: 116,
+						}}
 				>
-					A space of love and support,{"\n"} designed to help you{"\n"}<Text
-					style={{ color: colors.purple, fontFamily: 'Montserrat' }}>
-					discover your inner strength{"\n"}
-				</Text> with daily affirmations.
+					<ImageBackground
+							source={require('~assets/img/ob-1.png')}
+							style={{
+								width: 500,
+								height: 500,
+								position: 'absolute',
+								top: -195,
+								left: -110,
+							}}
+							resizeMode='contain'
+					/>
+				</View>
+				<Text
+						style={{
+							lineHeight: 32,
+							textAlign: 'center',
+							fontWeight: '500',
+							fontFamily: 'Montserrat',
+						}}
+				>
+					<Text
+							style={{
+								fontFamily: 'Montserrat',
+								fontSize: 28,
+								color: colors.text.black,
+								fontWeight: '600',
+							}}
+					>Welcome to Lolo{"\n\n"}</Text>
+					<Text
+							style={{
+								fontFamily: 'Montserrat',
+								fontSize: 24,
+								color: colors.text.black,
+								fontWeight: '600',
+							}}
+					>
+						A space of love and support,{"\n"} designed to help you{"\n"}<Text
+							style={{ color: colors.purple, fontFamily: 'Montserrat' }}>
+						discover your inner strength{"\n"}
+						with daily affirmations.
+					</Text>
+					</Text>
 				</Text>
-			</Text>
+			</View>
 			<AppButton title={'Let\'s Start'} onPress={handleLogin}/>
 		</View>
 	)

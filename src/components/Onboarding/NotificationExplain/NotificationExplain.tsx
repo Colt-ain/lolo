@@ -13,9 +13,10 @@ const styles = StyleSheet.create({
 });
 
 const fadeTime = 500;
+const showingInterval = 1000;
 
 function NotificationExplain({ navigation }: { navigation: any }) {
-	const [count, setCount] = useState(0);
+	const [_, setCount] = useState(0);
 
 	const fadeAnim1 = useRef(new Animated.Value(0)).current;
 	const fadeAnim2 = useRef(new Animated.Value(0)).current;
@@ -37,7 +38,7 @@ function NotificationExplain({ navigation }: { navigation: any }) {
 
 				return prevCount + 1;
 			});
-		}, 2000);
+		}, showingInterval);
 		return () => clearInterval(interval);
 	}, []);
 
