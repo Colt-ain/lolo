@@ -7,11 +7,15 @@ interface InitialState {
 		text: string;
 		imagePath: string;
 	} | null;
+	areasToImprove: any[];
+	areasToSupportNow: any[];
 }
 
 const initialState: InitialState = {
 	isOnboarding: true,
 	avatar: null,
+	areasToImprove: [],
+	areasToSupportNow: [],
 };
 
 const onboarding = createSlice({
@@ -20,6 +24,12 @@ const onboarding = createSlice({
 	reducers: {
 		setOnboarding: (state, action: PayloadAction<{ isOnboarding: boolean }>) => {
 			state.isOnboarding = action.payload.isOnboarding;
+		},
+		setAreasToImprove: (state, action: PayloadAction<{ areas: any[] }>) => {
+			state.areasToImprove = action.payload.areas;
+		},
+		setAreasToSupportNow: (state, action: PayloadAction<{ areas: any[] }>) => {
+			state.areasToSupportNow = action.payload.areas;
 		},
 		setAvatar: (state, action: PayloadAction<{
 			avatar: {
@@ -33,6 +43,11 @@ const onboarding = createSlice({
 	},
 });
 
-export const { setOnboarding, setAvatar } = onboarding.actions;
+export const {
+	setOnboarding,
+	setAvatar,
+	setAreasToImprove,
+	setAreasToSupportNow,
+} = onboarding.actions;
 
 export default onboarding.reducer;

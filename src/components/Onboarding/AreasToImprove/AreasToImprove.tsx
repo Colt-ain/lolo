@@ -1,16 +1,22 @@
-import React, { useState } from "react";
-import { Text, View } from "react-native";
-import Tips from "~components/@common/Tips/Tips";
-import { areasToImprove } from "../../../content/onboarding/areasToImprove";
-import AppButton from "~components/@common/AppButton";
-import { useNavigation } from "@react-navigation/native";
+import React, { useState } from 'react';
+import { Text, View } from 'react-native';
+import Tips from '~components/@common/Tips/Tips';
+import { areasToImprove } from '../../../content/onboarding/areasToImprove';
+import AppButton from '~components/@common/AppButton';
 import { onboardingRouteNames } from '~routes/onboarding/onboardingRouteNames';
-import { colors } from "~constants/colors";
+import { colors } from '~constants/colors';
+import { RootState } from '~store/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { setAreasToImprove } from '~slices/onboarding';
 
 function AreasToImprove({ navigation }: { navigation: any }) {
+	const dispatch = useDispatch();
+
+	const chosenAreasToImprove = useSelector((state: RootState) => state.onboarding.areasToImprove);
+
 	const [areas, setAreas] = useState(areasToImprove.map((area) => ({
 		...area,
-		isActive: false,
+		isActive: chosenAreasToImprove.some((item) => item.id === area.id),
 	})));
 
 	const handleTipPress = (id: string | number) => {
@@ -26,12 +32,12 @@ function AreasToImprove({ navigation }: { navigation: any }) {
 				return tip;
 			});
 		});
-	}
+	};
 
 	const onNextPress = () => {
-		console.log('Next');
+		dispatch(setAreasToImprove({ areas: areas.filter((area) => area.isActive) }));
 
-		navigation.navigate(onboardingRouteNames.chooseLolo);
+		navigation.navigate(onboardingRouteNames.areasToSupportNow);
 	};
 
 	const isChosen = areas.some((area) => area.isActive);
@@ -55,7 +61,7 @@ function AreasToImprove({ navigation }: { navigation: any }) {
 					textAlign: 'center',
 				}}
 			>
-				Which areas of life would{'\n'}you like to improve?
+				In which areas do you need{'\n'}support the most?
 			</Text>
 			<View
 				style={{

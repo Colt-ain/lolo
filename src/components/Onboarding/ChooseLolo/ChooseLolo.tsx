@@ -128,7 +128,11 @@ function ChooseLolo({ navigation }: { navigation: any }) {
 				overflow: 'hidden',
 			}}
 		>
-			<View>
+			<View
+					style={{
+						marginTop: 30,
+					}}
+			>
 				<Text
 					style={{
 						fontFamily: 'Montserrat',
@@ -160,8 +164,8 @@ function ChooseLolo({ navigation }: { navigation: any }) {
 						fontSize: 18,
 						lineHeight: 32,
 						textAlign: 'center',
+						alignSelf: 'center',
 						marginBottom: 25,
-						marginLeft: 30,
 						fontWeight: '400',
 					}}
 				>

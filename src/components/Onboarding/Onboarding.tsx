@@ -15,6 +15,7 @@ import NotificationExamples from '~components/Onboarding/NotificationExamples';
 import YouWillStartWith from '~components/Onboarding/YouWillStartWith';
 import Subscription from '~components/Onboarding/Subscription';
 import NotificationExplain from '~components/Onboarding/NotificationExplain';
+import AreasToSupportNow from "~components/AreasToSupportNow";
 
 const { welcome, areasToImprove } = onboardingRouteNames;
 
@@ -94,6 +95,11 @@ const Onboarding = () => {
 					name={onboardingRouteNames.areasToImprove}
 					component={AreasToImprove}
 					options={screenOptions('', true, true)}
+				/>
+				<Stack.Screen
+						name={onboardingRouteNames.areasToSupportNow}
+						component={AreasToSupportNow}
+						options={screenOptions('', true, true)}
 				/>
 				<Stack.Screen
 					name={onboardingRouteNames.chooseLolo}
