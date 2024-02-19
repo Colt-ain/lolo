@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Animated, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Animated, ImageBackground, ScrollView, StyleSheet, Text, View } from "react-native";
 import { colors } from '~constants/colors';
 import AppButton from '~components/@common/AppButton';
 import { onboardingRouteNames } from '~routes/onboarding/onboardingRouteNames';
@@ -114,8 +114,6 @@ function NotificationExplain({ navigation }: { navigation: any }) {
 					style={{
 						backgroundColor: '#DFA58A',
 						borderRadius: 14,
-						paddingHorizontal: 30,
-						paddingVertical: 30,
 						opacity: fadeAnim1,
 						transform: [
 							{
@@ -131,18 +129,31 @@ function NotificationExplain({ navigation }: { navigation: any }) {
 						shadowRadius: 14,
 						elevation: 8,
 						marginBottom: 30,
+						paddingHorizontal: 24,
+						paddingVertical: 24,
 					}}
 				>
-					<Text
+					<ImageBackground
+						source={require('~assets/img/sunrise.png')}
 						style={{
-							fontSize: 20,
-							fontWeight: '500',
-							textAlign: 'left',
-							marginBottom: 10,
-							color: colors.text.white,
-							lineHeight: 24,
-							fontFamily: 'Montserrat',
+							position: 'absolute',
+							top: 0,
+							left: 0,
+							bottom: 0,
+							right: -34,
 						}}
+					>
+					</ImageBackground>
+					<Text
+							style={{
+								fontSize: 20,
+								fontWeight: '500',
+								textAlign: 'left',
+								marginBottom: 10,
+								color: colors.text.white,
+								lineHeight: 24,
+								fontFamily: 'Montserrat',
+							}}
 					>
 						Morning
 					</Text>
@@ -155,14 +166,12 @@ function NotificationExplain({ navigation }: { navigation: any }) {
 					>
 						<Text
 								style={{
-									fontSize: 18,
-									fontWeight: '500',
-									textAlign: 'left',
-									color: colors.text.white,
-									lineHeight: 24,
 									fontFamily: 'Montserrat',
+									fontSize: 18,
+									fontWeight: '400',
+									color: colors.text.white,
 								}}
-						> &#x2022; </Text>
+						>• </Text>
 						<Text
 								style={{
 									fontSize: 18,
@@ -185,14 +194,12 @@ function NotificationExplain({ navigation }: { navigation: any }) {
 					>
 						<Text
 								style={{
-									fontSize: 18,
-									fontWeight: '500',
-									textAlign: 'left',
-									color: colors.text.white,
-									lineHeight: 24,
 									fontFamily: 'Montserrat',
+									fontSize: 18,
+									fontWeight: '400',
+									color: colors.text.white,
 								}}
-						> &#x2022; </Text>
+						>• </Text>
 						<Text
 								style={{
 									fontSize: 18,
@@ -230,6 +237,18 @@ function NotificationExplain({ navigation }: { navigation: any }) {
 							marginBottom: 30,
 						}}
 				>
+					<ImageBackground
+							resizeMode='cover'
+							source={require('~assets/img/sun.png')}
+							style={{
+								position: 'absolute',
+								top: 0,
+								left: 0,
+								bottom: 0,
+								right: -35,
+							}}
+					>
+					</ImageBackground>
 					<Text
 							style={{
 								fontSize: 20,
@@ -250,14 +269,12 @@ function NotificationExplain({ navigation }: { navigation: any }) {
 					>
 						<Text
 								style={{
-									fontSize: 18,
-									fontWeight: '500',
-									textAlign: 'left',
-									color: colors.text.white,
-									lineHeight: 24,
 									fontFamily: 'Montserrat',
+									fontSize: 18,
+									fontWeight: '400',
+									color: colors.text.white,
 								}}
-						> &#x2022; </Text>
+						>• </Text>
 						<Text
 								style={{
 									fontSize: 18,
@@ -278,14 +295,12 @@ function NotificationExplain({ navigation }: { navigation: any }) {
 					>
 						<Text
 								style={{
-									fontSize: 18,
-									fontWeight: '500',
-									textAlign: 'left',
-									color: colors.text.white,
-									lineHeight: 24,
 									fontFamily: 'Montserrat',
+									fontSize: 18,
+									fontWeight: '400',
+									color: colors.text.white,
 								}}
-						> &#x2022; </Text>
+						>• </Text>
 						<Text
 								style={{
 									fontSize: 18,
@@ -306,14 +321,12 @@ function NotificationExplain({ navigation }: { navigation: any }) {
 					>
 						<Text
 								style={{
-									fontSize: 18,
-									fontWeight: '500',
-									textAlign: 'left',
-									color: colors.text.white,
-									lineHeight: 24,
 									fontFamily: 'Montserrat',
+									fontSize: 18,
+									fontWeight: '400',
+									color: colors.text.white,
 								}}
-						> &#x2022; </Text>
+						>• </Text>
 						<Text
 								style={{
 									fontSize: 18,
@@ -332,8 +345,6 @@ function NotificationExplain({ navigation }: { navigation: any }) {
 						style={{
 							backgroundColor: '#6DB2BC',
 							borderRadius: 14,
-							paddingHorizontal: 24,
-							paddingVertical: 24,
 							opacity: fadeAnim3,
 							transform: [
 								{
@@ -349,8 +360,22 @@ function NotificationExplain({ navigation }: { navigation: any }) {
 							shadowRadius: 14,
 							elevation: 8,
 							marginBottom: 40,
+							paddingHorizontal: 24,
+							paddingVertical: 24,
 						}}
 				>
+					<ImageBackground
+							resizeMode='cover'
+							source={require('~assets/img/moon.png')}
+							style={{
+								position: 'absolute',
+								top: 0,
+								left: 0,
+								bottom: 0,
+								right: -10,
+							}}
+					>
+					</ImageBackground>
 					<Text
 						style={{
 							fontSize: 20,
@@ -371,14 +396,12 @@ function NotificationExplain({ navigation }: { navigation: any }) {
 					>
 						<Text
 								style={{
-									fontSize: 18,
-									fontWeight: '500',
-									textAlign: 'left',
-									color: colors.text.white,
-									lineHeight: 24,
 									fontFamily: 'Montserrat',
+									fontSize: 18,
+									fontWeight: '400',
+									color: colors.text.white,
 								}}
-						> &#x2022; </Text>
+						>• </Text>
 						<Text
 								style={{
 									fontSize: 18,
@@ -399,14 +422,12 @@ function NotificationExplain({ navigation }: { navigation: any }) {
 					>
 						<Text
 								style={{
-									fontSize: 18,
-									fontWeight: '500',
-									textAlign: 'left',
-									color: colors.text.white,
-									lineHeight: 24,
 									fontFamily: 'Montserrat',
+									fontSize: 18,
+									fontWeight: '400',
+									color: colors.text.white,
 								}}
-						> &#x2022; </Text>
+						>• </Text>
 						<Text
 								style={{
 									fontSize: 18,
@@ -427,14 +448,12 @@ function NotificationExplain({ navigation }: { navigation: any }) {
 					>
 						<Text
 								style={{
-									fontSize: 18,
-									fontWeight: '500',
-									textAlign: 'left',
-									color: colors.text.white,
-									lineHeight: 24,
 									fontFamily: 'Montserrat',
+									fontSize: 18,
+									fontWeight: '400',
+									color: colors.text.white,
 								}}
-						> &#x2022; </Text>
+						>• </Text>
 						<Text
 								style={{
 									fontSize: 18,
@@ -445,7 +464,7 @@ function NotificationExplain({ navigation }: { navigation: any }) {
 									fontFamily: 'Montserrat',
 								}}
 						>
-							feel grateful for what you have;
+							feel grateful for what you{'\n'} have;
 						</Text>
 					</View>
 				</Animated.View>
