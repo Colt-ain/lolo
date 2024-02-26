@@ -1,42 +1,42 @@
-import React from "react";
-import { ImageBackground, Text, useColorScheme, View } from "react-native";
-import { colors } from "~constants/colors";
-import AppButton from "~components/@common/AppButton";
-import { useAppDispatch, useAppSelector } from "~store/store";
-import { getAuth } from "~store/selectors";
-import { setIsAuth } from "~slices/auth";
-import { onboardingRouteNames } from "~routes/onboarding/onboardingRouteNames";
+import React from 'react';
+import { ImageBackground, Text, useColorScheme, View } from 'react-native';
+import { colors } from '~constants/colors';
+import AppButton from '~components/@common/AppButton';
+import { useAppDispatch, useAppSelector } from '~store/store';
+import { getAuth } from '~store/selectors';
+import { setIsAuth } from '~slices/auth';
+import { onboardingRouteNames } from '~routes/onboarding/onboardingRouteNames';
 
 function Welcome({ navigation }: any) {
 	const { isAuth } = useAppSelector(getAuth);
 	const dispatch = useAppDispatch();
 
-
-	const isDarkMode = useColorScheme() === "dark";
+	const isDarkMode = useColorScheme() === 'dark';
 
 	const handleLogin = () => {
 		console.log('handleLogin');
 		dispatch(setIsAuth({ isAuth: !isAuth }));
 
 		navigation.navigate(onboardingRouteNames.areasToImprove);
-	}
+	};
 
 	return (
 		<View
 			style={{
 				flex: 1,
-				alignItems: "center",
-				justifyContent: "space-between",
+				alignItems: 'center',
+				justifyContent: 'space-around',
 				backgroundColor: colors.background.white,
-				paddingTop: 86,
+				paddingTop: 46,
 				paddingBottom: 40,
+				paddingHorizontal: 30,
 			}}
 		>
 			<View
 				style={{
 					flex: 1,
-					alignItems: "center",
-					justifyContent: "flex-start",
+					alignItems: 'center',
+					justifyContent: 'flex-start',
 				}}
 			>
 				<View
@@ -75,7 +75,7 @@ function Welcome({ navigation }: any) {
 								color: colors.text.black,
 								fontWeight: '600',
 							}}
-					>Welcome to Lolo{"\n\n"}</Text>
+					>Welcome to Lolo{'\n\n'}</Text>
 					<Text
 							style={{
 								fontFamily: 'Montserrat',
@@ -84,17 +84,16 @@ function Welcome({ navigation }: any) {
 								fontWeight: '600',
 							}}
 					>
-						A space of love and support,{"\n"} designed to help you{"\n"}<Text
+						A space of love and support, designed to help you <Text
 							style={{ color: colors.purple, fontFamily: 'Montserrat' }}>
-						discover your inner strength{"\n"}
-						with daily affirmations.
+						discover your inner strength with daily affirmations.
 					</Text>
 					</Text>
 				</Text>
 			</View>
 			<AppButton title={'Let\'s Start'} onPress={handleLogin}/>
 		</View>
-	)
+	);
 }
 
 export default Welcome;

@@ -3,11 +3,11 @@ import { ImageBackground, Pressable, ScrollView, StyleSheet, Text, View } from '
 import notificationExamples from '../../../content/notificationExamples';
 import { colors } from '~constants/colors';
 import AppButton from '~components/@common/AppButton';
-import LinearGradient from 'react-native-linear-gradient'
+import LinearGradient from 'react-native-linear-gradient';
 import { TimeoutId } from '@reduxjs/toolkit/dist/query/core/buildMiddleware/types';
-import { onboardingRouteNames } from "~routes/onboarding/onboardingRouteNames";
-import { RootState } from "~store/store";
-import { useSelector } from "react-redux";
+import { onboardingRouteNames } from '~routes/onboarding/onboardingRouteNames';
+import { RootState } from '~store/store';
+import { useSelector } from 'react-redux';
 
 const styles = StyleSheet.create({
 	linearGradient: {
@@ -59,7 +59,7 @@ function NotificationExamples({ navigation }: { navigation: any }) {
 
 	const handleNext = () => {
 		navigation.navigate(onboardingRouteNames.youWillStartWith);
-	}
+	};
 
 	return (
 		<View
@@ -89,11 +89,11 @@ function NotificationExamples({ navigation }: { navigation: any }) {
 					marginBottom: 30,
 				}}
 			>
-				Your Lolo will send you wise{'\n'}<Text
+				Your Lolo will send you wise<Text
 					style={{
 						color: colors.purple,
 					}}
-				>affirmations</Text> throughout the{'\n'}day, that will cultivate your{'\n'}inner strength.
+				>affirmations</Text> throughout the day, that will cultivate your inner strength.
 			</Text>
 			<ScrollView
 				ref={ref => scrollView.current = ref}
@@ -114,7 +114,7 @@ function NotificationExamples({ navigation }: { navigation: any }) {
 								marginBottom: 20,
 								backgroundColor: colors.background.white,
 								borderRadius: 15,
-								shadowColor: "#000",
+								shadowColor: '#000',
 								shadowOffset: {
 									width: 2,
 									height: 4,
