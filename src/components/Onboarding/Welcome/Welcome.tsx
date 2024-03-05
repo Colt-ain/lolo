@@ -6,6 +6,9 @@ import { useAppDispatch, useAppSelector } from '~store/store';
 import { getAuth } from '~store/selectors';
 import { setIsAuth } from '~slices/auth';
 import { onboardingRouteNames } from '~routes/onboarding/onboardingRouteNames';
+import NotificationService from "../../../../NotificationService";
+import affirmations from '../../../notifications/affirmations.json';
+import { transformData } from "~utils/transformData";
 
 function Welcome({ navigation }: any) {
 	const { isAuth } = useAppSelector(getAuth);
@@ -18,6 +21,23 @@ function Welcome({ navigation }: any) {
 		dispatch(setIsAuth({ isAuth: !isAuth }));
 
 		navigation.navigate(onboardingRouteNames.areasToImprove);
+	};
+
+	const setNotification = () => {
+		const notifications = transformData(affirmations);
+
+		console.log(notifications);
+
+		for (const notification of notifications) {
+			NotificationService.scheduleNotification({
+				message: notification.message,
+				date: notification?.date,
+			});
+		}
+	};
+
+	const cancelAllNotifications = () => {
+		NotificationService.cancelAllNotifications();
 	};
 
 	return (
@@ -92,6 +112,8 @@ function Welcome({ navigation }: any) {
 				</Text>
 			</View>
 			<AppButton title={'Let\'s Start'} onPress={handleLogin}/>
+			<AppButton style={{ marginTop: 10 }} title={'Set notification'} onPress={setNotification}/>
+			<AppButton style={{ marginTop: 10 }} title={'Cancel All notifications'} onPress={cancelAllNotifications}/>
 		</View>
 	);
 }

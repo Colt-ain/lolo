@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect } from "react";
 import {
 	SafeAreaView,
 	StyleSheet,
@@ -13,6 +13,9 @@ import Auth from '~components/Auth';
 
 import { colors } from '~constants/colors';
 import { withIAPContext } from 'react-native-iap';
+import { transformData } from "~utils/transformData";
+import affirmations from "./src/notifications/affirmations.json";
+import NotificationService from "./NotificationService";
 
 const styles = StyleSheet.create({
 	container: {
