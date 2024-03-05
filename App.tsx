@@ -1,49 +1,49 @@
-import React, { Component, FC, FunctionComponent, ReactElement } from "react";
-import type { PropsWithChildren } from "react";
+import React, { ReactElement, useEffect } from "react";
 import {
-	Button,
 	SafeAreaView,
-	ScrollView,
-	StatusBar,
 	StyleSheet,
-	Text,
 	useColorScheme,
 	View,
-} from "react-native";
-import { Provider } from "react-redux";
+} from 'react-native';
+import { Provider } from 'react-redux';
 
-import {
-	Colors,
-	DebugInstructions,
-	Header,
-	LearnMoreLinks,
-	ReloadInstructions
-} from "react-native/Libraries/NewAppScreen";
-import { store, useAppDispatch, useAppSelector } from "./src/store/store";
+import { store } from './src/store/store';
 
-import AppButton from "~components/@common/AppButton";
-import Auth from "~components/Auth";
+import Auth from '~components/Auth';
 
-import { getAuth } from "~store/selectors";
-import { setIsAuth } from "~slices/auth";
-import { colors } from "~constants/colors";
-import { linking } from "~components/Onboarding/Onboarding";
-import { NavigationContainer } from "@react-navigation/native";
+import { colors } from '~constants/colors';
+import { withIAPContext } from 'react-native-iap';
+import { transformData } from "~utils/transformData";
+import affirmations from "./src/notifications/affirmations.json";
+import NotificationService from "./NotificationService";
+
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+		backgroundColor: colors.background.white,
+		fontFamily: 'Montserrat',
+	},
+});
 
 function App(): ReactElement {
-	const isDarkMode = useColorScheme() === "dark";
-
-	const backgroundStyle = {
-		flex: 1,
-	};
+	const isDarkMode = useColorScheme() === 'dark';
 
 	return (
+		<View style={{
+			flex: 1,
+			backgroundColor: colors.background.white,
+		}}>
 			<Provider store={store}>
-				<SafeAreaView style={backgroundStyle}>
+				<SafeAreaView style={{
+					flex: 1,
+				}}>
 					<Auth/>
 				</SafeAreaView>
 			</Provider>
+		</View>
 	);
 }
 
-export default App;
+export default withIAPContext(App);

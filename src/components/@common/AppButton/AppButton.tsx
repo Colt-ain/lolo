@@ -1,22 +1,24 @@
 
-import React, { JSX, useEffect, useState } from "react";
-import { Button, Pressable, Text, View } from "react-native";
-import { useAppDispatch, useAppSelector } from "~store/store";
-import { setOnboarding } from "~slices/onboarding";
-import { getOnboarding } from "~store/selectors";
-import { mmkvStorage } from "../../../localStorage/mmkvStorage";
-import { colors } from "~constants/colors";
+import React, { JSX, useEffect, useState } from 'react';
+import { Button, Pressable, Text, View } from 'react-native';
+import { useAppDispatch, useAppSelector } from '~store/store';
+import { setOnboarding } from '~slices/onboarding';
+import { getOnboarding } from '~store/selectors';
+import { mmkvStorage } from '../../../localStorage/mmkvStorage';
+import { colors } from '~constants/colors';
 
 type Props = {
 	title: string;
 	onPress?: () => void;
 	disabled?: boolean;
+	style?: any;
 };
 
 export default function AppButton({
 	onPress,
 	title,
 	disabled,
+	style,
 }: Props): JSX.Element {
 	const [isPressed, setIsPressed] = useState(false);
 
@@ -30,7 +32,7 @@ export default function AppButton({
 
 	const onPressOut = () => {
 		setIsPressed(false);
-	}
+	};
 
 	return (
 		<Pressable
@@ -39,18 +41,21 @@ export default function AppButton({
 			onPressOut={onPressOut}
 			style={{
 				backgroundColor: disabled ? colors.background.disable : colors.background.black,
-				justifyContent: "center",
-				alignItems: "center",
+				justifyContent: 'center',
+				alignItems: 'center',
 				paddingHorizontal: 46,
 				paddingVertical: 18,
 				borderRadius: 18,
+				...style,
 			}}
 		>
 			<Text
 				style={{
+					fontFamily: 'Montserrat',
 					fontSize: 18,
+					fontWeight: '500',
 					color: disabled
-						? colors.text.black
+						? isPressed ? colors.text.pressed : colors.text.black
 						: isPressed
 							? colors.text.pressed
 							: colors.text.white,

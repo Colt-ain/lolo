@@ -1,16 +1,22 @@
-import React, { useState } from "react";
-import { Text, View } from "react-native";
-import Tips from "~components/@common/Tips/Tips";
-import { areasToImprove } from "../../../content/onboarding/areasToImprove";
-import AppButton from "~components/@common/AppButton";
-import { useNavigation } from "@react-navigation/native";
+import React, { useState } from 'react';
+import { Text, View } from 'react-native';
+import Tips from '~components/@common/Tips/Tips';
+import { areasToImprove } from '../../../content/onboarding/areasToImprove';
+import AppButton from '~components/@common/AppButton';
+import { onboardingRouteNames } from '~routes/onboarding/onboardingRouteNames';
+import { colors } from '~constants/colors';
+import { RootState } from '~store/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { setAreasToImprove } from '~slices/onboarding';
 
-function AreasToImprove({}) {
-	const navigation = useNavigation();
+function AreasToImprove({ navigation }: { navigation: any }) {
+	const dispatch = useDispatch();
+
+	const chosenAreasToImprove = useSelector((state: RootState) => state.onboarding.areasToImprove);
 
 	const [areas, setAreas] = useState(areasToImprove.map((area) => ({
 		...area,
-		isActive: false,
+		isActive: chosenAreasToImprove.some((item) => item.id === area.id),
 	})));
 
 	const handleTipPress = (id: string | number) => {
@@ -26,10 +32,12 @@ function AreasToImprove({}) {
 				return tip;
 			});
 		});
-	}
+	};
 
 	const onNextPress = () => {
-		console.log('Next');
+		dispatch(setAreasToImprove({ areas: areas.filter((area) => area.isActive) }));
+
+		navigation.navigate(onboardingRouteNames.areasToSupportNow);
 	};
 
 	const isChosen = areas.some((area) => area.isActive);
@@ -40,18 +48,20 @@ function AreasToImprove({}) {
 				flex: 1,
 				paddingHorizontal: 32,
 				justifyContent: 'space-between',
-				paddingBottom: '8%',
+				paddingBottom: 40,
+				backgroundColor: colors.background.white,
 			}}
 		>
 			<Text
 				style={{
+					fontFamily: 'Montserrat',
 					fontSize: 22,
 					fontWeight: '600',
 					lineHeight: 32,
 					textAlign: 'center',
 				}}
 			>
-				Which areas of life would{'\n'}you like to improve?
+				In which areas do you need{'\n'}support the most?
 			</Text>
 			<View
 				style={{
@@ -65,9 +75,13 @@ function AreasToImprove({}) {
 				/>
 			</View>
 			<AppButton
-				title={isChosen ? 'Next' : 'Skip'}
+				title={isChosen ? 'Continue' : 'Skip'}
 				onPress={onNextPress}
 				disabled={!isChosen}
+				style={{
+					width: 180,
+					alignSelf: 'center',
+				}}
 			/>
 		</View>
 	);
